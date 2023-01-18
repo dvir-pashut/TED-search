@@ -1,14 +1,14 @@
 #!/bin/bash
-tets_ip=$(cat ec2_ip.txt)
-curl -I http://${test-ip}/api/search?q=public | head -n 1 | cut -d " " -f 2 > result.txt
+tets_ip="18.197.29.49"
+curl -I http://${test_ip}/api/search?q=public | head -n 1 | cut -d " " -f 2 > result.txt
 wait
-curl -I http://${test-ip}/api/search?q=city   | head -n 1 | cut -d " " -f 2 >> result.txt
+curl -I http://${test_ip}/api/search?q=city   | head -n 1 | cut -d " " -f 2 >> result.txt
 wait
-curl -I http://${test-ip}/api/search?q=time   | head -n 1 | cut -d " " -f 2 >> result.txt
+curl -I http://${test_ip}/api/search?q=time   | head -n 1 | cut -d " " -f 2 >> result.txt
 wait
-curl -I http://${test-ip}/api/search?q=sleep   | head -n 1 | cut -d " " -f 2 >> result.txt
+curl -I http://${test_ip}/api/search?q=sleep   | head -n 1 | cut -d " " -f 2 >> result.txt
 wait
-curl -I http://${test-ip}/api/search?q=sleep   | head -n 1 | cut -d " " -f 2 >> result.txt
+curl -I http://${test_ip}/api/search?q=sleep   | head -n 1 | cut -d " " -f 2 >> result.txt
 wait
 
 check=0
