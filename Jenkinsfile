@@ -54,12 +54,13 @@ pipeline{
                 // starting build
                 echo "========executing tests========"
                 sh """
-                cd terr
-                terraform init
-                terraform workspace select dev
-                terraform apply -auto-approve -var-file dev.tfvars
-                bash e2e-tests.sh 
+                    cd terr
+                    terraform init
+                    terraform workspace select dev
+                    terraform apply -auto-approve -var-file dev.tfvars
                 """
+                sh "bash e2e-tests.sh"
+
             }
             post{
                 success{
