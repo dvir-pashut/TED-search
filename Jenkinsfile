@@ -53,13 +53,11 @@ pipeline{
                 // starting build
                 echo "========executing tests========"
                 sh """
+                echo pwd > terr/pwd.txt
                 cd terr
-                #terraform init
-                #terraform workspace select dev
-                pwd
-                ls ../
-                ls ../../
-                #terraform apply -auto-approve -var-file dev.tfvars
+                terraform init
+                terraform workspace select dev
+                terraform apply -auto-approve -var-file dev.tfvars
                 bash e2e-tests.sh 
                 """
             }

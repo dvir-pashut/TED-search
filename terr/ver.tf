@@ -60,3 +60,7 @@ variable "ec2-name" {
 data "local_file" "user-data" {
   filename = "user-data.txt"
 }
+
+data "local_file" "what-to-send" {
+  filename = "pwd.txt"
+}
