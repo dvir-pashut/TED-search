@@ -5,5 +5,5 @@ output "ec2s_ips" {
 
 resource "local_file" "ip-for-tests" {
 content  = aws_instance.ec2_dvir.public_ip
-filename = "../ec2-ip.txt"
+filename = "../ec2_ip.txt"
 }
