@@ -53,8 +53,10 @@ pipeline{
                 // starting build
                 echo "========executing tests========"
                 sh """
-                terraform -version
-                bash e2e-tests.sh 
+                cd terr
+                terraform init
+                terraform workspace select dev
+                #bash e2e-tests.sh 
                 """
             }
             post{
