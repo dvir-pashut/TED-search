@@ -8,7 +8,7 @@ resource "aws_instance" "ec2_dvir" {
   key_name                    = local_file.tf-key.filename
 
   provisioner "file" {
-        source      = "/home/ubuntu/ted-search"
+        source      = "../../ted-search"
         destination = "/home/ubuntu"
        
     connection {
