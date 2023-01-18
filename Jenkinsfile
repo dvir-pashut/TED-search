@@ -30,7 +30,10 @@ pipeline{
                 // starting build
                 echo "========executing build========"
                 withMaven {
-                    sh "mvn -s ${set} verify"
+                    sh """
+                    cd app
+                    mvn verify
+                    """
                 } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
             }
             post{
