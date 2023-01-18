@@ -54,8 +54,9 @@ pipeline{
                 echo "========executing tests========"
                 sh """
                 cd terr
-                terraform init
-                terraform workspace select dev
+                #terraform init
+                #terraform workspace select dev
+                pwd
                 ls ../
                 ls ../../
                 #terraform apply -auto-approve -var-file dev.tfvars
