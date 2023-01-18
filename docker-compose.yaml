@@ -6,7 +6,7 @@ services:
     image: nginx:alpine-slim
     ports:
       - 80:80
-    volumes:
+    #volumes:
       #- "./nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
     depends_on:
       - ted-search
@@ -14,10 +14,8 @@ services:
   ted-search:
     container_name: ted-search
     image: embedash:1.1-SNAPSHOT
-    networks:
     depends_on:
-      mysql_db:
-        condition: service_healthy
+     - memcached
   memcached:  
     container_name: some-cache-stuff
     image: memcached:1.6.18
