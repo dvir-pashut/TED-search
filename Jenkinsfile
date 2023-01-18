@@ -34,8 +34,8 @@ pipeline{
                     sh """
                     cd app
                     mvn verify
-                    docker save -o \$(pwd)/image.tar embedash:1.1-SNAPSHOT
-                    chmod 777 image.tar
+                    docker save -o \$(pwd)/to-send/image.tar embedash:1.1-SNAPSHOT
+                    chmod 777 to-send/image.tar
                     """
                 } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
             }
@@ -53,7 +53,6 @@ pipeline{
                 // starting build
                 echo "========executing tests========"
                 sh """
-                pwd > terr/pwd.txt
                 cd terr
                 terraform init
                 terraform workspace select dev

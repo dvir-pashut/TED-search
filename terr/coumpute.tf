@@ -8,7 +8,7 @@ resource "aws_instance" "ec2_dvir" {
   key_name                    = local_file.tf-key.filename
 
   provisioner "file" {
-        source      = data.local_file.what-to-send.content
+        source      = "../to-send"
         destination = "/home/ubuntu"
        
     connection {
