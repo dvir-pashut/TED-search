@@ -25,7 +25,7 @@ pipeline{
                 sh "git checkout main"
             }
         }
-         stage("build"){
+        stage("build"){
             steps{
                 // starting build
                 echo "========executing build========"
@@ -42,6 +42,25 @@ pipeline{
                 }
                 failure{
                     echo "========build execution failed========"
+                }
+            }
+        }
+        stage("tests"){
+            steps{
+                // starting build
+                echo "========executing tests========"
+                withMaven {
+                    sh """
+                    bash e2e-tests.sh 
+                    """
+                } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
+            }
+            post{
+                success{
+                    echo "========tests executed successfully========"
+                }
+                failure{
+                    echo "========tests execution failed========"
                 }
             }
         }
