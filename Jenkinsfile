@@ -63,6 +63,13 @@ pipeline{
 
             }
             post{
+                always{
+                    sh """
+                        cd terr
+                        terraform workspace select dev
+                        terraform destroy -auto-approve -var-file dev.tfvars
+                    """
+                }
                 success{
                     echo "========tests executed successfully========"
                 }
