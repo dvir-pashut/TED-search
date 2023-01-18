@@ -18,7 +18,10 @@ pipeline{
                 echo "========checking out (loking hella fine)========"
                 deleteDir()
                 checkout scm
-                sh "mvn clean"
+                sh """
+                    cd app
+                    mvn clean
+                """
                 sh "git checkout main"
             }
         }
