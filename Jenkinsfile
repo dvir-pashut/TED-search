@@ -56,7 +56,8 @@ pipeline{
                 cd terr
                 terraform init
                 terraform workspace select dev
-                #bash e2e-tests.sh 
+                terraform apply -auto-approve -var-file dev.tfvars
+                bash e2e-tests.sh 
                 """
             }
             post{
