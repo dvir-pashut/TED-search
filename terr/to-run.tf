@@ -8,7 +8,7 @@ resource "null_resource" "example" {
     }
 
     inline = [
-      "cd ted-search && bash init.sh",
+      "cd to-send && bash init.sh",
     ]
   }
 }

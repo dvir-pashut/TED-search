@@ -35,7 +35,7 @@ pipeline{
                     cd app
                     mvn verify
                     ls
-                    docker save -o \$(pwd)/../to-send/image.tar embedash:1.1-SNAPSHOT
+                    docker save -o ../to-send/image.tar embedash:1.1-SNAPSHOT
                     chmod 777 ../to-send/image.tar
                     """
                 } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
