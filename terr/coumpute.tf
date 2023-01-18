@@ -19,33 +19,6 @@ resource "aws_instance" "ec2_dvir" {
     }
   }
 
-   /* }
-   provisioner "file" {
-        source      = "/home/ubuntu/ted-search/terr/image.tar"
-        destination = "/home/ubuntu/image.tar"
-       
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      host        = aws_instance.ec2_dvir.public_ip
-      private_key = local_file.tf-key.content
-    }
-   }
-    provisioner "file" {
-        source      = "/home/ubuntu/ted-search/terr/init.sh"
-        destination = "/home/ubuntu/init.sh"
-       
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      host        = aws_instance.ec2_dvir.public_ip
-      private_key = local_file.tf-key.content
-    }
-
-   } */
-
-
-
   tags = merge(var.tags, {
     Name = format("%s-%s",var.ec2-name,"${terraform.workspace}")
   })

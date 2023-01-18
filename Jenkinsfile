@@ -9,6 +9,7 @@ pipeline{
     }
     tools {
         // set tools to work with 
+        terraform "terraform-1.3.7"
         maven "maven 3.6.2"
         jdk "java 8 kit"
     }
@@ -34,6 +35,7 @@ pipeline{
                     cd app
                     mvn verify
                     sudo docker save -o $(pwd)/image.tar embedash:1.1-SNAPSHOT
+                    chmod 777 image.tar
                     """
                 } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
             }
@@ -50,11 +52,10 @@ pipeline{
             steps{
                 // starting build
                 echo "========executing tests========"
-                withMaven {
-                    sh """
-                    bash e2e-tests.sh 
-                    """
-                } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
+                sh """
+                terraform -version
+                bash e2e-tests.sh 
+                """
             }
             post{
                 success{
