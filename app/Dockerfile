@@ -1,7 +1,6 @@
 FROM openjdk:8-jre-alpine3.9
 
 WORKDIR /app-exe
-COPY target .
+COPY . .
 
-COPY enterypoint.sh .
 ENTRYPOINT ["./enterypoint.sh"]
