@@ -1,12 +1,6 @@
 #!/bin/bash
 
-check=1
-while [ ${check} == 1 ]
-do
-check=0
-curl -I http://$(cat ec2_ip.txt)/api/search?q=public  || { check=1 ; }
-sleep 1
-done
+sleep 7
 
 curl -I http://$(cat ec2_ip.txt)/api/search?q=public | head -n 1 | cut -d " " -f 2 > result.txt
 wait
