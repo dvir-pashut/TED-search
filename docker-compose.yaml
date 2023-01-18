@@ -8,6 +8,7 @@ services:
       - 80:80
     volumes:
       - "./nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
+      - "./nginx/static:/usr/share/nginx/html/static"
     depends_on:
       - ted-search
 
