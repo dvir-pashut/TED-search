@@ -11,5 +11,4 @@ resource "null_resource" "example" {
       "cd to-send && bash init.sh",
     ]
   }
-  
 }
