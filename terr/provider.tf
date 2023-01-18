@@ -8,7 +8,10 @@ terraform {
     local = {
       source  = "hashicorp/local"
       version = "2.3.0"
-
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.1"
     }
   }
 
@@ -26,5 +29,9 @@ provider "aws" {
 }
 
 provider "local" {
+  # Configuration options
+}
+
+provider "null" {
   # Configuration options
 }

@@ -33,6 +33,7 @@ pipeline{
                     sh """
                     cd app
                     mvn verify
+                    sudo docker save -o $(pwd)/image.tar embedash:1.1-SNAPSHOT
                     """
                 } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
             }
