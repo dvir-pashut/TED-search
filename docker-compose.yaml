@@ -7,16 +7,12 @@ services:
       - 80:80
     volumes:
       #- "./nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
-    networks:
-      - nginx-app
     depends_on:
       - lavagna-app
 
   lavagna-app:
-    image: ${image_updtaed_name}
+    image: embedash:1.1-SNAPSHOT
     networks:
-     - app-db
-     - nginx-app
     depends_on:
       mysql_db:
         condition: service_healthy
