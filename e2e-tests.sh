@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sleep 7
-
+sleep 10
+cat ec2_ip.txt
 curl -I http://$(cat ec2_ip.txt)/api/search?q=public | head -n 1 | cut -d " " -f 2 > result.txt
 wait
 curl -I http://$(cat ec2_ip.txt)/api/search?q=city   | head -n 1 | cut -d " " -f 2 >> result.txt
