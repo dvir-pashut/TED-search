@@ -53,7 +53,7 @@ pipeline{
                 // starting build
                 echo "========executing tests========"
                 sh """
-                echo pwd > terr/pwd.txt
+                pwd > terr/pwd.txt
                 cd terr
                 terraform init
                 terraform workspace select dev
