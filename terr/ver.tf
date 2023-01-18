@@ -58,5 +58,5 @@ variable "ec2-name" {
 }
 
 data "local_file" "user-data" {
-  filename = "/home/ubuntu/ted-search/terr/user-data.txt"
+  filename = "user-data.txt"
 }
