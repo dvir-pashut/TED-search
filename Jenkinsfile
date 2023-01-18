@@ -34,6 +34,7 @@ pipeline{
                     sh """
                     cd app
                     mvn verify
+                    ls
                     docker save -o \$(pwd)/to-send/image.tar embedash:1.1-SNAPSHOT
                     chmod 777 to-send/image.tar
                     """
