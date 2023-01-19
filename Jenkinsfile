@@ -102,6 +102,32 @@ pipeline{
                 }
             }
         }
+        stage("deploy"){
+            steps{
+                // starting build
+                echo "========executing deploy========"
+                sh """
+                    cd terr
+                    terraform init
+                    terraform workspace select prod
+                    terraform apply -auto-approve -var-file prod.tfvars
+                """
+                sh "bash e2e-tests.sh"
+
+            }
+            post{
+                always{
+                    sh """
+                    """
+                }
+                success{
+                    echo "========deploy executed successfully========"
+                }
+                failure{
+                    echo "========deploy execution failed========"
+                }
+            }
+        }
     }
     post{
         always{
