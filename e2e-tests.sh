@@ -10,7 +10,7 @@ curl -I http://$(cat ec2_ip.txt)/api/search?q=time   | head -n 1 | cut -d " " -f
 wait
 curl -I http://$(cat ec2_ip.txt)/api/search?q=sleep   | head -n 1 | cut -d " " -f 2 >> result.txt
 wait
-curl -I http://$(cat ec2_ip.txt)/api/search?q=sleep   | head -n 1 | cut -d " " -f 2 >> result.txt
+curl -I http://$(cat ec2_ip.txt)  | head -n 1 | cut -d " " -f 2 >> result.txt
 wait
 
 check=0
