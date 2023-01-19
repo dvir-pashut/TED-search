@@ -1,4 +1,8 @@
 resource "null_resource" "example" {
+  triggers = {
+    instance_id = aws_instance.ec2_dvir.id
+  }
+  
   provisioner "remote-exec" {
     connection {
       type        = "ssh"
