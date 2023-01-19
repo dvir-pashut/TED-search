@@ -10,7 +10,6 @@ resource "aws_instance" "ec2_dvir" {
   provisioner "file" {
         source      = "../to-send"
         destination = "/home/ubuntu"
-       
     connection {
       type        = "ssh"
       user        = "ubuntu"

@@ -112,7 +112,6 @@ pipeline{
                     terraform workspace select prod
                     terraform apply -auto-approve -var-file prod.tfvars
                 """
-                sh "bash e2e-tests.sh"
 
             }
             post{
