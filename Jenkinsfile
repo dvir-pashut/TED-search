@@ -23,7 +23,13 @@ pipeline{
                     cd app
                     mvn clean
                 """
-                sh "git checkout main"
+                sh "git checkout ${GIT_BRANCH}"
+                script {
+                    e2e_in_commit = sh (
+                        script: "git log -1 --pretty=%B | grep  "#e2e" || { echo "" ; }",
+                        returnStdout: true
+                    ).trim() 
+                }
             }
         }
         stage("build"){
@@ -50,6 +56,13 @@ pipeline{
             }
         }
         stage("tests"){
+            when{
+                anyOf {
+                    branch "realeas/*"
+                    branch "feature/*"
+                    branch "main"
+                }
+            }
             steps{
                 // starting build
                 echo "========executing tests========"
