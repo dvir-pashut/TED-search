@@ -18,6 +18,10 @@ resource "aws_instance" "ec2_dvir" {
     }
   }
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   tags = merge(var.tags, {
     Name = format("%s-%s",var.ec2-name,"${terraform.workspace}")
   })
