@@ -60,3 +60,8 @@ variable "ec2-name" {
 data "local_file" "user-data" {
   filename = "user-data.txt"
 }
+
+variable "new" {
+  type = bool
+  description = "create new?"
+}
