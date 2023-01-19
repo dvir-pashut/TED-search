@@ -63,8 +63,10 @@ pipeline{
                         branch 'feature/*'
                         expression { "${test_in_commit}" != "" }
                     }
-                    branch "main"
-                    branch "realeas/*"
+                    allOf {
+                        branch 'main'
+                        expression { "${test_in_commit}" != "" }
+                    }
                 }
             }
             steps{
