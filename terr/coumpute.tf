@@ -7,11 +7,6 @@ resource "aws_instance" "ec2_dvir" {
   user_data                   = data.local_file.user-data.content
   key_name                    = local_file.tf-key.filename
 
-  lifecycle {
-    replace_triggered_by = [
-      local_file.ip-for-tests.id
-    ]
-  }
   provisioner "file" {
         source      = "../to-send"
         destination = "/home/ubuntu"
