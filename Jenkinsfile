@@ -49,59 +49,59 @@ pipeline{
                 }
             }
         }
-        // stage("tests"){
-        //     steps{
-        //         // starting build
-        //         echo "========executing tests========"
-        //         sh """
-        //             cd terr
-        //             terraform init
-        //             terraform workspace select dev
-        //             terraform apply -auto-approve -var-file dev.tfvars
-        //         """
-        //         sh "bash e2e-tests.sh"
+        stage("tests"){
+            steps{
+                // starting build
+                echo "========executing tests========"
+                sh """
+                    cd terr
+                    terraform init
+                    terraform workspace select dev
+                    terraform apply -auto-approve -var-file dev.tfvars
+                """
+                sh "bash e2e-tests.sh"
 
-        //     }
-        //     post{
-        //         always{
-        //             sh """
-        //                 cd terr
-        //                 terraform workspace select dev
-        //                 terraform destroy -auto-approve -var-file dev.tfvars
-        //             """
-        //         }
-        //         success{
-        //             echo "========tests executed successfully========"
-        //         }
-        //         failure{
-        //             echo "========tests execution failed========"
-        //         }
-        //     }
-        // }
-        // stage("publish"){
-        //     steps{
-        //         // publishing the docker image to ECR
-        //         echo "========executing publish========"
+            }
+            post{
+                always{
+                    sh """
+                        cd terr
+                        terraform workspace select dev
+                        terraform destroy -auto-approve -var-file dev.tfvars
+                    """
+                }
+                success{
+                    echo "========tests executed successfully========"
+                }
+                failure{
+                    echo "========tests execution failed========"
+                }
+            }
+        }
+        stage("publish"){
+            steps{
+                // publishing the docker image to ECR
+                echo "========executing publish========"
                 
-        //         // taging the image so i will be able to send it to the repo//
-        //         sh "docker tag embedash:1.1-SNAPSHOT dvir-ted-search"
+                // taging the image so i will be able to send it to the repo//
+                sh "docker tag embedash:1.1-SNAPSHOT dvir-ted-search"
                 
-        //         // publish the image to the ecr//
-        //         script{
-        //             docker.withRegistry("http://644435390668.dkr.ecr.eu-west-3.amazonaws.com", "ecr:eu-west-3:aws-develeap") {
-        //                 docker.image("dvir-ted-search").push()
-        //             }
-        //         }
-        //     }
-        //     post{
-        //         success{
-        //             echo "========build executed successfully========"
-        //         }
-        //         failure{
-        //             echo "========build execution failed========"
-        //         }
-        //     }
-        // }
+                // publish the image to the ecr//
+                script{
+                    docker.withRegistry("http://644435390668.dkr.ecr.eu-west-3.amazonaws.com", "ecr:eu-west-3:aws-develeap") {
+                        docker.image("dvir-ted-search").push()
+                    }
+                }
+            }
+            post{
+                success{
+                    echo "========build executed successfully========"
+                }
+                failure{
+                    echo "========build execution failed========"
+                }
+            }
+        }
         stage("deploy"){
             steps{
                 // starting build
