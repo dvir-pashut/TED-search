@@ -1,3 +1,4 @@
+def test_in_commit
 pipeline{
     agent any
     options{
@@ -25,8 +26,8 @@ pipeline{
                 """
                 sh "git checkout ${GIT_BRANCH}"
                 script {
-                    e2e_in_commit = sh (
-                        script: "git log -1 --pretty=%B | grep  "#e2e" || { echo "" ; }",
+                    test_in_commit = sh (
+                        script: 'git log -1 --pretty=%B | grep  "#test" || { echo "" ; }',
                         returnStdout: true
                     ).trim() 
                 }
