@@ -110,7 +110,7 @@ pipeline{
                     cd terr
                     terraform init
                     terraform workspace select prod
-                    terraform apply -auto-approve -var-file prod.tfvars
+                    terraform apply -auto-approve -var-file prod.tfvars --replace=aws_instance.dvir-ec2
                 """
 
             }

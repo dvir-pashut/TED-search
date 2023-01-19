@@ -6,7 +6,6 @@ resource "aws_instance" "ec2_dvir" {
   associate_public_ip_address = true
   user_data                   = data.local_file.user-data.content
   key_name                    = local_file.tf-key.filename
-  create_before_destroy       = var.new
 
   provisioner "file" {
         source      = "../to-send"
