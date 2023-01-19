@@ -98,6 +98,18 @@ pipeline{
             }
         }
         stage("publish"){
+            when{
+                anyOf {
+                    allOf {
+                        branch 'feature/*'
+                        expression { "${test_in_commit}" != "" }
+                    }
+                    allOf {
+                        branch 'main'
+                        expression { "${test_in_commit}" != "" }
+                    }
+                }
+            }
             steps{
                 // publishing the docker image to ECR
                 echo "========executing publish========"
@@ -122,6 +134,18 @@ pipeline{
             }
         }
         stage("deploy"){
+            when{
+                anyOf {
+                    allOf {
+                        branch 'feature/*'
+                        expression { "${test_in_commit}" != "" }
+                    }
+                    allOf {
+                        branch 'main'
+                        expression { "${test_in_commit}" != "" }
+                    }
+                }
+            }
             steps{
                 // starting build
                 echo "========executing deploy========"
