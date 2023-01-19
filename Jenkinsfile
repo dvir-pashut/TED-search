@@ -27,7 +27,7 @@ pipeline{
                 sh "git checkout ${GIT_BRANCH}"
                 script {
                     test_in_commit = sh (
-                        script: "git log -1 --pretty=%B | grep  \"#test\" || { echo "" ; }",
+                        script: 'git log -1 --pretty=%B | grep  "#test" || { echo "" ; } ' ,
                         returnStdout: true
                     ).trim() 
                 }
