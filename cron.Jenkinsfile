@@ -13,6 +13,7 @@ pipeline{
             echo "========executing what is up========"
             sh """
                 cd terr
+                terraform init
                 terraform workspace select dev
                 dev_env=\$(terraform show | wc -l)
                 terraform workspace select prod
