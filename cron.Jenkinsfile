@@ -53,7 +53,7 @@ pipeline{
             // sending emails 
             emailext body: """Status Report
                     Project: ${env.JOB_NAME} 
-                    what is up : $\{what_is_up[@]}
+                    what is up : \${what_is_up[@]}
                 recipientProviders: [developers(), requestor()],
                 subject: 'tests resulte: Project name -> ${JOB_NAME}',
         }
