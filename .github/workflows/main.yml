@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      run: git clone https://github.com/my-repo.git
+      run: git clone https://github.com/dvir-pashut/TED-search.git
     - name: Set JDK
       run: export JAVA_HOME=$(ls -d /usr/lib/jvm/java-8-openjdk-amd64)
     - name: Build
