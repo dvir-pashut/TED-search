@@ -8,9 +8,9 @@ pipeline{
             sh """
                 pushd terr
                 terraform workspace select dev
-                dev_env=$(terraform show | wc -l)
+                dev_env=\$(terraform show | wc -l)
                 terraform workspace select prod
-                prod_env=$(terraform show | wc -l)
+                prod_env=\$(terraform show | wc -l)
                 what_is_up=()
 
                 if [ ${dev_env} != "1" ];
@@ -29,8 +29,8 @@ pipeline{
                     export prod_env="down"
                 fi
 
-                echo "prod env is ${prod_env}"
-                echo "dev env is  ${dev_env}"
+                echo "prod env is \${prod_env}"
+                echo "dev env is  \${dev_env}"
             """
             }
             post{
