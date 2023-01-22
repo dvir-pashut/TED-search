@@ -1,6 +1,12 @@
 def up
 pipeline{
     agent any 
+    
+    tools {
+        // set tools to work with 
+        terraform "terraform-1.3.7"
+    }
+    
     stages{
         stage("A"){
             steps{
