@@ -1,42 +1,20 @@
-name: Test and Publish
+name: Build
 
 on:
   push:
     branches:
       - main
-      - feature/*
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      run: |
-        echo "========checking out (loking hella fine)========"
-        git clone https://github.com/my-repo.git
-        cd app
-        mvn clean
-        git checkout ${GIT_BRANCH}
-        test_in_commit=$(git log -1 --pretty=%B | grep "#test" || echo "")
+      run: git clone https://github.com/my-repo.git
+    - name: Set JDK
+      run: export JAVA_HOME=$(ls -d /usr/lib/jvm/java-8-openjdk-amd64)
     - name: Build
       run: |
-        echo "========executing build========"
+        cd my-repo
         cd app
-        mvn verify
-        docker save -o ../to-send/image.tar embedash:1.1-SNAPSHOT
-        chmod 777 ../to-send/image.tar
-    - name: Tests
-      if: ${{ contains(github.event.head_commit.message, "#test") }}
-      run: |
-        echo "========executing tests========"
-        cd terr
-        terraform init
-        terraform workspace select dev
-        terraform apply -auto-approve -var-file dev.tfvars
-        bash e2e-tests.sh
-    - name: Publish
-      if: ${{ contains(github.event.head_commit.message, "#test") }}
-      run: |
-        echo "========executing publish========"
-        docker tag embedash:1.1-SNAPSHOT dvir-ted-search
-        ...
+        mvn clean install
