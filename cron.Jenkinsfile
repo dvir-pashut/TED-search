@@ -13,7 +13,7 @@ pipeline{
                 prod_env=\$(terraform show | wc -l)
                 what_is_up=()
 
-                if [ ${dev_env} != "1" ];
+                if [ \${dev_env} != "1" ];
                 then 
                     what_is_up+=("dev")
                     export dev_env="up"
@@ -21,7 +21,7 @@ pipeline{
                     export dev_env="down"
                 fi
 
-                if [ ${prod_env} != "1" ];
+                if [ \${prod_env} != "1" ];
                 then 
                     what_is_up+=("prod")
                     export prod_env="up"
