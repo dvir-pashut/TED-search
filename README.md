@@ -1,5 +1,3 @@
-# TED-search
-
 TED Search
 ==========
 
