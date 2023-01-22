@@ -15,5 +15,6 @@ jobs:
       run: export JAVA_HOME=$(ls -d /usr/lib/jvm/java-8-openjdk-amd64)
     - name: Build
       run: |
-        ls
+        cd TED-search
+        cd app
         mvn clean install
