@@ -6,7 +6,7 @@ pipeline{
             steps{
             echo "========executing what is up========"
             sh """
-                pushd terr
+                cd terr
                 terraform workspace select dev
                 dev_env=\$(terraform show | wc -l)
                 terraform workspace select prod
