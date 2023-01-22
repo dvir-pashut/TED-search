@@ -23,7 +23,7 @@ pipeline{
 
                 if [ \${prod_env} != "1" ];
                 then 
-                    what_is_up+=("prod")
+                    export what_is_up+=("prod")
                     export prod_env="up"
                 else
                     export prod_env="down"
