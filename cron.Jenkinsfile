@@ -18,7 +18,7 @@ pipeline{
                 dev_env=\$(terraform show | wc -l)
                 terraform workspace select prod
                 prod_env=\$(terraform show | wc -l)
-                what_is_up=()
+                export what_is_up=()
 
                 if [ \${dev_env} != "1" ];
                 then 
