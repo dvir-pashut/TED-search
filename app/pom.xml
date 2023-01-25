@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <metrics.version>0.5.1.RELEASE</metrics.version>
-        <prom.version>0.6.0</prom.version>
+        <prom.version>0.16.0</prom.version>
     </properties>
 
     <dependencies>
